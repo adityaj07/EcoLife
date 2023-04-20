@@ -1,0 +1,78 @@
+---
+import Logo from "../images/logo.png";
+---
+
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <a href="/" class="logo-link">
+        <img src={Logo} alt="logo" />
+        <span class="logo-txt">EcoLife</span>
+      </a>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/blog" class="nav-link">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    height: 70px;
+    background: var(--color-primary);
+  }
+
+  .header .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .header img {
+    height: 35px;
+    vertical-align: middle;
+  }
+
+  .header nav ul {
+    display: flex;
+  }
+
+  .header nav ul li {
+    padding: 0 10px;
+  }
+
+  .header nav ul li a {
+    color: #fff;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .logo .logo-link .logo-txt {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 900;
+  }
+
+  .nav-links {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-link:hover {
+    color: yellow;
+  }
+</style>

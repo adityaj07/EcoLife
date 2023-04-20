@@ -1,0 +1,57 @@
+---
+import Card from "./Card.astro";
+
+const featuresData = [
+  {
+    title: "Reduce Your Carbon Footprint",
+    body: "Discover practical tips for reducing your carbon footprint and living a more environmentally friendly lifestyle.",
+  },
+  {
+    title: "Conserve Resources",
+    body: "Find ways to conserve resources like water and energy through simple changes in your habits and lifestyle.",
+  },
+  {
+    title: "Live Sustainably",
+    body: "Explore the many benefits of sustainable living, from reducing waste and pollution to supporting local communities and economies.",
+  },
+];
+---
+
+<section class="features">
+    <h2 class="container">Features</h2>
+  <div class="container">
+    {
+      featuresData.map((feature) => (
+        <Card title={feature.title} body={feature.body}/>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+    .features .container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        padding: 0 20px;
+        margin: 30px auto;
+    }
+
+    .features h2{
+        font-size: 2rem;
+        font-weight: 900;
+    }
+
+ /* MEDIA QUERIES  */
+ @media (min-width: 760px) {
+    .features .container{
+    grid-template-columns: repeat(2, 1fr);
+   }
+ }
+  
+  @media (min-width: 500px) {
+   .features .container{
+    grid-template-columns: repeat(1, 1fr);
+   }
+}
+</style>

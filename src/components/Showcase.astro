@@ -1,0 +1,55 @@
+---
+import ImageBar from "./ImageBar.astro";
+
+const {heading = "Welcome to EcoLife - the ultimate resource for sustainable living!", text = "Our mission is to help you live a more environmentally friendly lifestyle by providing tips, tools, and resources to reduce your carbon footprint and create a more sustainable world. Here, you will find information on how to conserve water and energy, reduce waste, and make smart, sustainable choices.", showExtra = false} = Astro.props;
+---
+
+<section class="showcase ">
+<div class="showcase-text">
+    <h1>{heading}</h1>
+    <p>{text}</p>
+</div>
+
+{showExtra && <>
+<div class="showcase-img">
+    <ImageBar/>
+</div>
+</>
+}
+
+
+
+</section>
+
+<style>
+    .showcase{
+        height: auto;
+        background-color: var(--color-secondary);
+        background-image: linear-gradient(to bottom, var(--color-primary), rgb(15 23 42 / 0));
+        padding: 30px;
+        border-radius: 0 0 35px 35px;
+    }
+
+    .showcase-blog{
+        min-height: 300px;
+    }
+
+    .showcase-text{
+        max-width: 45%;
+        color: #fff;
+        text-align: center;
+        margin: 50px auto;
+    }
+
+    .showcase h1{
+        font-size: 60px;
+        color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .showcase p {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+</style>
