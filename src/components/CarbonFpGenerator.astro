@@ -1,36 +1,126 @@
 ---
 import carbonImg from "../images/carbon.jpg";
+import forest from "../images/forest.jpg";
+
 ---
 
+
+
 <div class="carbonFpCalc-container container">
-    <div class="left">
-        <img src={carbonImg} alt="carbonImg">
-    </div>
-    <div class="right">
-        <form>
-            <h2>Carbon Footprint Calculator</h2>
-            <div>
-              <label for="electricity">Electricity Consumption (kWh/month):</label>
-              <input type="number" id="electricity" name="electricity" required>
-            </div>
-            <div>
-              <label for="gas">Natural Gas Consumption (m3/month):</label>
-              <input type="number" id="gas" name="gas" required>
-            </div>
-            <div>
-              <label for="fuel">Transportation Fuel Consumption (liters/month):</label>
-              <input type="number" id="fuel" name="fuel" required>
-            </div>
-            <div>
-              <label for="waste">Waste Generation (kg/month):</label>
-              <input type="number" id="waste" name="waste" required>
-            </div>
-            <div>
-              <label for="water">Water Consumption (liters/month):</label>
-              <input type="number" id="water" name="water" required>
-            </div>
-            <button type="submit" onclick="calculateCarbonFootprint()">Calculate</button>
-          </form>
-    </div>
-</div>
   
+  <div class="right">
+    <form class="carbon-form">
+      <h2>Carbon Footprint Calculator</h2>
+      <div>
+        <label for="electricity">Electricity Consumption (kWh/month):</label>
+        <input type="number" id="electricity" name="electricity" required />
+      </div>
+      <div>
+        <label for="gas">Natural Gas Consumption (m3/month):</label>
+        <input type="number" id="gas" name="gas" required />
+      </div>
+      <div>
+        <label for="fuel">Transportation Fuel Consumption (liters/month):</label
+        >
+        <input type="number" id="fuel" name="fuel" required />
+      </div>
+      <div>
+        <label for="waste">Waste Generation (kg/month):</label>
+        <input type="number" id="waste" name="waste" required />
+      </div>
+      <div>
+        <label for="water">Water Consumption (liters/month):</label>
+        <input type="number" id="water" name="water" required />
+      </div>
+      <button type="submit" onclick="calculateCarbonFootprint(e)"
+        >Calculate</button
+      >
+    </form>
+  </div>
+</div>
+
+<style>
+  .carbonFpCalc-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50rem;
+    background: url("../images/forest.jpg") no-repeat;
+    border-radius: 25px;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 25px;
+  }
+
+  h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  div {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #eee;
+    font-size: 16px;
+    color: #333;
+  }
+
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #008080;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #006666;
+  }
+</style>
+
+<script>
+  function calculateCarbonFootprint(e:any) {
+  e.preventDefault();
+  const electricity = (document.getElementById("electricity") as HTMLInputElement);
+  const elecValue = parseFloat(electricity.value);
+  const gas = (document.getElementById("gas") as HTMLInputElement);
+  const gasValue = parseFloat(electricity.value);
+  const fuel = (document.getElementById("fuel") as HTMLInputElement);
+  const fuelValue = parseFloat(electricity.value);
+  const waste = (document.getElementById("waste") as HTMLInputElement);
+  const wasteValue = parseFloat(electricity.value);
+  const water = (document.getElementById("water") as HTMLInputElement);
+  const waterValue = parseFloat(electricity.value);
+
+  const carbonFootprint = (elecValue* 0.82) + (gasValue* 2.75) + (fuelValue * 2.35) + (wasteValue * 0.02) + (waterValue * 0.001);
+
+  alert("Your carbon footprint is " + carbonFootprint + " metric tonnes CO2e per year.");
+}
+</script>

@@ -1,5 +1,5 @@
 ---
-const {title, body, dark = false} = Astro.props;
+const {title, body, dark = false } = Astro.props;
 ---
 
 <div class={`card ${dark && "dark"}`}>
@@ -15,8 +15,6 @@ const {title, body, dark = false} = Astro.props;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         margin-bottom: 20px;
         transition: all .3s ease-in-out;
-       
-
     }
 
     .card:hover{

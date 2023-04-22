@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import Header from "../components/Header.astro"; 
+import Footer from "../components/Footer.astro";
+import favicon from "../images/favicon.png";
 
 ---
 
@@ -15,12 +17,12 @@ import Header from "../components/Header.astro";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href={favicon}type="image/x-icon">
     <title>EcoLife | Sustainable living</title>
 </head>
 <body>
     <Header/>
-    
     <slot/>
+    <Footer/>
 </body>
 </html>
