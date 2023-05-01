@@ -1,13 +1,9 @@
 ---
 import carbonImg from "../images/carbon.jpg";
 import forest from "../images/forest.jpg";
-
 ---
 
-
-
 <div class="carbonFpCalc-container container">
-  
   <div class="right">
     <form class="carbon-form">
       <h2>Carbon Footprint Calculator</h2>
@@ -32,15 +28,13 @@ import forest from "../images/forest.jpg";
         <label for="water">Water Consumption (liters/month):</label>
         <input type="number" id="water" name="water" required />
       </div>
-      <button type="submit" onclick="calculateCarbonFootprint(e)"
-        >Calculate</button
-      >
+      <button type="submit">Calculate</button>
     </form>
   </div>
 </div>
 
 <style>
-  .carbonFpCalc-container{
+  .carbonFpCalc-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,21 +100,35 @@ import forest from "../images/forest.jpg";
 </style>
 
 <script>
-  function calculateCarbonFootprint(e:any) {
-  e.preventDefault();
-  const electricity = (document.getElementById("electricity") as HTMLInputElement);
-  const elecValue = parseFloat(electricity.value);
-  const gas = (document.getElementById("gas") as HTMLInputElement);
-  const gasValue = parseFloat(electricity.value);
-  const fuel = (document.getElementById("fuel") as HTMLInputElement);
-  const fuelValue = parseFloat(electricity.value);
-  const waste = (document.getElementById("waste") as HTMLInputElement);
-  const wasteValue = parseFloat(electricity.value);
-  const water = (document.getElementById("water") as HTMLInputElement);
-  const waterValue = parseFloat(electricity.value);
+  const form = document.querySelector(".carbon-form");
+  function calculateCarbonFootprint(e: Event) {
+    e.preventDefault();
+    const electricity = document.getElementById(
+      "electricity"
+    ) as HTMLInputElement;
+    const elecValue = parseFloat(electricity.value);
+    const gas = document.getElementById("gas") as HTMLInputElement;
+    const gasValue = parseFloat(gas.value);
+    const fuel = document.getElementById("fuel") as HTMLInputElement;
+    const fuelValue = parseFloat(fuel.value);
+    const waste = document.getElementById("waste") as HTMLInputElement;
+    const wasteValue = parseFloat(waste.value);
+    const water = document.getElementById("water") as HTMLInputElement;
+    const waterValue = parseFloat(water.value);
 
-  const carbonFootprint = (elecValue* 0.82) + (gasValue* 2.75) + (fuelValue * 2.35) + (wasteValue * 0.02) + (waterValue * 0.001);
+    const carbonFootprint =
+      elecValue * 0.82 +
+      gasValue * 2.75 +
+      fuelValue * 2.35 +
+      wasteValue * 0.02 +
+      waterValue * 0.001;
 
-  alert("Your carbon footprint is " + carbonFootprint + " metric tonnes CO2e per year.");
-}
+    alert(
+      "Your carbon footprint is " +
+        carbonFootprint +
+        " metric tonnes CO2e per year."
+    );
+  }
+
+  form.addEventListener("submit", calculateCarbonFootprint);
 </script>
