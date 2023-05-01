@@ -31,6 +31,14 @@ import forest from "../images/forest.jpg";
       <button type="submit">Calculate</button>
     </form>
   </div>
+
+  <div id="carbonModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Your Carbon Footprint:</h2>
+      <p id="carbonResult"></p>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -97,24 +105,62 @@ import forest from "../images/forest.jpg";
   button[type="submit"]:hover {
     background-color: #006666;
   }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 5px;
+  }
+
+  /* Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 </style>
 
 <script>
   const form = document.querySelector(".carbon-form");
-  function calculateCarbonFootprint(e: Event) {
+  function calculateCarbonFootprint(e: any) {
     e.preventDefault();
     const electricity = document.getElementById(
       "electricity"
     ) as HTMLInputElement;
     const elecValue = parseFloat(electricity.value);
     const gas = document.getElementById("gas") as HTMLInputElement;
-    const gasValue = parseFloat(gas.value);
+    const gasValue = parseFloat(gas.value); 
     const fuel = document.getElementById("fuel") as HTMLInputElement;
-    const fuelValue = parseFloat(fuel.value);
+    const fuelValue = parseFloat(fuel.value); 
     const waste = document.getElementById("waste") as HTMLInputElement;
-    const wasteValue = parseFloat(waste.value);
+    const wasteValue = parseFloat(waste.value); 
     const water = document.getElementById("water") as HTMLInputElement;
-    const waterValue = parseFloat(water.value);
+    const waterValue = parseFloat(water.value); 
 
     const carbonFootprint =
       elecValue * 0.82 +
@@ -123,11 +169,21 @@ import forest from "../images/forest.jpg";
       wasteValue * 0.02 +
       waterValue * 0.001;
 
-    alert(
-      "Your carbon footprint is " +
-        carbonFootprint +
-        " metric tonnes CO2e per year."
-    );
+    // show modal with result
+    const modal = document.getElementById("carbonModal") as HTMLElement;
+    const modalResult = document.getElementById("carbonResult") as HTMLElement;
+    modalResult.textContent = `${carbonFootprint.toFixed(
+      2
+    )} metric tonnes CO2e per year.`;
+    modal.style.display = "block";
+
+    // close modal when close button or outside modal is clicked
+    const closeBtn = document.getElementsByClassName("close")[0] as HTMLElement;
+    window.onclick = function (event) {
+      if (event.target == modal || event.target == closeBtn) {
+        modal.style.display = "none";
+      }
+    };
   }
 
   form.addEventListener("submit", calculateCarbonFootprint);
